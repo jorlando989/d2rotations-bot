@@ -1,9 +1,17 @@
 require('dotenv').config();
 const fs = require('node:fs');
+const mongoose = require('mongoose');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const keys = require('./config/keys');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent]});
+
+mongoose.connect(keys.mongoURI);
+
+require('./models/raidAndDungeonRotations');
+require('./models/lostSectorIndex');
+require('./models/nightfallWeaponRotation');
 
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, 'commands');

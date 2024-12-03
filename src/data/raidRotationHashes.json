@@ -1,0 +1,48 @@
+{
+    "rotation": ["Vow of the Disciple", "Last Wish", "King's Fall", "Garden of Salvation", "Deep Stone Crypt", "Root of Nightmares", "Vault of Glass", "Crota's End"],
+    "King's Fall": {
+        "milestoneHash": 292102995,
+        "activityHash": 1374392663,
+        "masterActivityHash": 2964135793
+    },
+    "Vault of Glass": {
+        "milestoneHash": 1888320892,
+        "activityHash": 3881495763,
+        "masterActivityHash": 1681562271
+    },
+    "Vow of the Disciple": {
+        "milestoneHash": 2136320298,
+        "activityHash": 1441982566,
+        "masterActivityHash": 4217492330
+    },
+    "Deep Stone Crypt": {
+        "milestoneHash": 541780856,
+        "activityHash": 910380154,
+        "masterActivityHash": null
+    },
+    "Last Wish": {
+        "milestoneHash": 3181387331,
+        "activityHash": 2122313384,
+        "masterActivityHash": null
+    },
+    "Garden of Salvation": {
+        "milestoneHash": 2712317338,
+        "activityHash": 3458480158,
+        "masterActivityHash": null
+    },
+    "Root of Nightmares": {
+        "milestoneHash": 3699252268,
+        "activityHash": 2381413764,
+        "masterActivityHash": 2918919505
+    }, 
+    "Crota's End": {
+        "milestoneHash": 540415767,
+        "activityHash": 4179289725,
+        "masterActivityHash": 1507509200
+    },
+    "Salvation's Edge": {
+        "milestoneHash": 4196566271,
+        "activityHash": 1541433876,
+        "masterActivityHash": 4129614942
+    }
+}

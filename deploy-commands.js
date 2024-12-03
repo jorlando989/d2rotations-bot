@@ -3,6 +3,10 @@ const { REST, Routes } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
 
+require('./src/models/raidAndDungeonRotations');
+require('./src/models/lostSectorIndex');
+require('./src/models/nightfallWeaponRotation');
+
 const commands = [];
 // Grab all the command folders from the commands directory you created earlier
 const foldersPath = path.join(__dirname, 'src/commands');

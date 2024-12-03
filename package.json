@@ -4,7 +4,10 @@
   "description": "",
   "dependencies": {
     "discord.js": "^14.16.3",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "mongodb": "^6.11.0",
+    "mongoose": "^8.8.3",
+    "node-fetch": "^3.3.2"
   },
   "main": "src/index.js"
 }

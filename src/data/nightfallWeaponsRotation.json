@@ -1,0 +1,83 @@
+{
+    "rotation": ["Undercurrent",  "Scintillation", "Uzume RR4", "Rake Angle", "Shadow Price", "PLUG ONE.1", "Wild Style", "The Slammer"],
+    "D.F.A.": {
+        "itemHash": 575830664,
+        "adeptItemHash": 2006308129
+    },
+    "Wendigo GL3": {
+        "itemHash": 3183283212,
+        "adeptItemHash": 3915197957
+    },
+    "Mindbender's Ambition": {
+        "itemHash": 1094005544,
+        "adeptItemHash": 912150785
+    },
+    "Horror's Least": {
+        "itemHash": 216983039,
+        "adeptItemHash": 1924276978
+    },
+    "Hung Jury SR4": {
+        "itemHash": 772231794,
+        "adeptItemHash": 4074251943
+    },
+    "The Militia's Birthright": {
+        "itemHash": 40394833,
+        "adeptItemHash": 2378101424
+    },
+    "Buzzard": {
+        "itemHash": 1699403824,
+        "adeptItemHash": 1478676677
+    },
+    "THE SWARM": {
+        "itemHash": 3920872880,
+        "adeptItemHash": 4073744300
+    },
+    "Loaded Question": {
+        "itemHash": 580961571,
+        "adeptItemHash": 643164677
+    },
+    "BrayTech Osprey": {
+        "itemHash": 4197367273,
+        "adeptItemHash": 3341152510 
+    },
+    "Warden's Law": {
+        "itemHash": 2015566989,
+        "adeptItemHash": 1606927173
+    },
+    "Pre Astyanax IV": {
+        "itemHash": 1066588498,
+        "adeptItemHash": 130489153
+    },
+    "Uzume RR4": {
+        "itemHash": 2487540783,
+        "adeptItemHash": 3610521673
+    },
+    "Undercurrent": {
+        "itemHash": 502425410,
+        "adeptItemHash": 2694613907
+    }, 
+    "The Slammer": {
+        "itemHash": 2889501828,
+        "adeptItemHash": 1354727549
+    },
+    "Wild Style": {
+        "itemHash": 1332123064,
+        "adeptItemHash": 3004927172
+    },
+    "Scintillation": {
+        "itemHash": 1262289634,
+        "adeptItemHash": 380705679
+    },
+    "Shadow Price": {
+        "itemHash": 168662290,
+        "adeptItemHash": 15760717
+    },
+    "Rake Angle": {
+        "itemHash": 3790887546,
+        "adeptItemHash": 2998282114
+    },
+    "PLUG ONE.1": {
+        "itemHash": 3293524502,
+        "adeptItemHash": 3349513867
+    }
+}

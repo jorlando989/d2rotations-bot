@@ -1,0 +1,44 @@
+{
+    "rotation": ["Shattered Throne", "Duality", "Spire of the Watcher", "Pit of Heresy", "Prophecy", "Ghosts of the Deep", "Grasp of Avarice", "Warlord's Ruin"],
+    "Ghosts of the Deep": {
+        "milestoneHash": 390471874,
+        "activityHash": 313828469,
+        "masterActivityHash": 2716998124
+    },
+    "Spire of the Watcher": {
+        "milestoneHash": 526718853,
+        "activityHash": 1262462921,
+        "masterActivityHash": 1801496203
+    },
+    "Duality": {
+        "milestoneHash": null,
+        "activityHash": 2823159265,
+        "masterActivityHash": 1668217731
+    },
+    "Shattered Throne": {
+        "milestoneHash": 422102671,
+        "activityHash": 2032534090,
+        "masterActivityHash": null
+    },
+    "Grasp of Avarice": {
+        "milestoneHash": 1092691445,
+        "activityHash": 4078656646,
+        "masterActivityHash": 3774021532
+    },
+    "Prophecy": {
+        "milestoneHash": 478604913,
+        "activityHash": 1077850348,
+        "masterActivityHash": null
+    },
+    "Pit of Heresy": {
+        "milestoneHash": 1742973996,
+        "activityHash": 1375089621,
+        "masterActivityHash": null
+    },
+    "Warlord's Ruin": {
+        "milestoneHash": 3921784328,
+        "activityHash": 2004855007,
+        "masterActivityHash": 2534833093
+
+    }
+}
