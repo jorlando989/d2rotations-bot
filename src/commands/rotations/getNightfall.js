@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const mongoose = require('mongoose');
 const keys = require("../../config/keys");
 const fetch = (...args) =>
@@ -59,6 +59,19 @@ module.exports = {
 
 		const currWeapon = nightfallWeaponsHashes.rotation[nightfallWeaponDB.nightfallWeaponIndex];
 
-		await interaction.editReply('This week\'s nightfall is ' + activityInfo.displayProperties.description + " and the featured weapon is " + currWeapon);
+        //create embed message
+        const nightfallEmbed = new EmbedBuilder()
+            .setColor(0x0099FF)
+            .setTitle('Weekly Nightfall')
+            .setURL('https://d2rotations.report/nightfall')
+            .setAuthor({ name: 'd2rotations', iconURL: 'https://d2rotations.report/destinyapilogoTransparent.png', url: 'https://d2rotations.report' })
+            .addFields(
+                { name: activityInfo.displayProperties.description, value: currWeapon}
+            )
+            .setImage('https://www.bungie.net/img/destiny_content/pgcr/strike_inverted_spire.jpg')
+            .setTimestamp()
+            .setFooter({ text: 'via d2rotations', iconURL: 'https://d2rotations.report/destinyapilogoTransparent.png' });
+
+        await interaction.editReply({ embeds: [nightfallEmbed] });
     }
 };
