@@ -68,7 +68,7 @@ module.exports = {
             .addFields(
                 { name: activityInfo.displayProperties.description, value: currWeapon}
             )
-            .setImage('https://www.bungie.net/img/destiny_content/pgcr/strike_inverted_spire.jpg')
+            .setImage(`https://www.bungie.net/${activityInfo.pgcrImage}`)
             .setTimestamp()
             .setFooter({ text: 'via d2rotations', iconURL: 'https://d2rotations.report/destinyapilogoTransparent.png' });
 
