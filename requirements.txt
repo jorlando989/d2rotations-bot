@@ -1,5 +1,5 @@
 discord
-py-cord
-pymongo
-requests_oauthlib
+py-cord==2.6.1
+pymongo==4.12.0
+requests_oauthlib==2.0.0
 dotenv
