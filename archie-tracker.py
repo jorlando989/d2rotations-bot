@@ -6,6 +6,7 @@ import discord
 from discord import option
 from discord.ext import commands
 import pymongo
+import random
 
 def get_good_boy_count(user_id):
     #get membership_id from database
@@ -91,14 +92,17 @@ async def register2(interaction, url):
 
 @bot.slash_command(name="good-boy-protocol")
 async def rank_good_boy_protocol(interaction):
+    response_options = ["You've pet Archie 1 times", "Resetting Good Boy Protocol...You've pet Archie 0 times", "Get Good"]
     good_boy_protocol_counter = get_good_boy_count(interaction.user.id)
-    if(interaction.user.id == 410595937321353216):
-        good_boy_protocol_counter = 1
+
     embed = discord.Embed(
         title="Good Boy Protocol", 
         description=f"You've pet Archie {good_boy_protocol_counter} times",
         color=discord.Color.blue()
     )
+    if(interaction.user.id == 410595937321353216):
+            random_integer = random.randrange(0,3)
+            embed.description = response_options[random_integer]
     embed.set_thumbnail(url="https://www.bungie.net/common/destiny2_content/icons/9f8e31dbce0ef4f4d3f58b32dfe9367c.jpg")
     embed.set_author(name=interaction.user.display_name, icon_url=interaction.user.display_avatar)
     await interaction.send(embed=embed)
@@ -112,7 +116,7 @@ async def leaderboard(interaction, leaderboard_name):
         for user in all_users:
             good_boy_count = get_good_boy_count(user["user_id"])
             if(interaction.user.id == 410595937321353216):
-                good_boy_count = 1
+                good_boy_count = 0
             all_users_gb_counts.append((user["membership_id"], user["user_id"], good_boy_count, user["name"]))
 
         all_users_gb_counts.sort(key=lambda x:x[2], reverse=True)
