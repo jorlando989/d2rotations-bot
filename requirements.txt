@@ -1,4 +1,4 @@
-pycord
+discord
 pymongo
 requests_oauthlib
 dotenv
