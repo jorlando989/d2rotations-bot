@@ -33,7 +33,7 @@ mongoClient = pymongo.MongoClient(os.getenv("MONGO_URI"))
 database = mongoClient["destiny-api-dev"]
 collection = database["users"]
 
-intents = discord.Intents.all()
+intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
 
