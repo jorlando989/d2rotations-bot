@@ -33,13 +33,13 @@ mongoClient = pymongo.MongoClient(os.getenv("MONGO_URI"))
 database = mongoClient["destiny-api-dev"]
 collection = database["users"]
 
-intents = discord.Intents.default()
+intents = discord.Intents.all()
 intents.members = True
 intents.message_content = True
 
 additional_headers = {"X-API-KEY": os.getenv("API_KEY")}
 
-bot = commands.Bot()
+bot = commands.Bot(command_prefix=".", intents=intents)
 session = OAuth2Session(client_id=client_id, redirect_uri=redirect_url)
 
 @bot.event
