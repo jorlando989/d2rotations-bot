@@ -55,10 +55,10 @@ async def register(interaction):
     results = collection.find_one({"user_id": interaction.user.id})
     if (results != None):
         await interaction.response.send_message("You are already registered.")
-        return
-    #oauth
-    auth_link = session.authorization_url(base_auth_url)
-    await interaction.response.send_message(f"Auth link: {auth_link[0]} \n\n Please visit this site, copy the url, and then call register2 command with the url")
+    else:
+        #oauth
+        auth_link = session.authorization_url(base_auth_url)
+        await interaction.response.send_message(f"Auth link: {auth_link[0]} \n\n Please visit this site, copy the url, and then call register2 command with the url")
 
 @bot.slash_command(name="register2")
 async def register2(interaction, url):
@@ -66,28 +66,28 @@ async def register2(interaction, url):
     results = collection.find_one({"user_id": interaction.user.id})
     if (results != None):
         await interaction.response.send_message("You are already registered.")
-        return
-    session.fetch_token(
-        client_id=client_id,
-        client_secret=client_secret,
-        token_url=token_url,
-        authorization_response=url
-    )
+    else:
+        session.fetch_token(
+            client_id=client_id,
+            client_secret=client_secret,
+            token_url=token_url,
+            authorization_response=url
+        )
 
-    get_membership_url = "https://www.bungie.net/Platform/User/GetMembershipsForCurrentUser/"
+        get_membership_url = "https://www.bungie.net/Platform/User/GetMembershipsForCurrentUser/"
 
-    membership_response = session.get(url=get_membership_url, headers=additional_headers)
-    membership_response_json = json.loads(membership_response.text)
-    membership_type = membership_response_json["Response"]["destinyMemberships"][0]["membershipType"]
-    membership_id = membership_response_json["Response"]["destinyMemberships"][0]["membershipId"]
+        membership_response = session.get(url=get_membership_url, headers=additional_headers)
+        membership_response_json = json.loads(membership_response.text)
+        membership_type = membership_response_json["Response"]["destinyMemberships"][0]["membershipType"]
+        membership_id = membership_response_json["Response"]["destinyMemberships"][0]["membershipId"]
 
-    #save user in database
-    #need to save user id and characters ids
-    print(membership_type, membership_id, url)
-    result = collection.insert_one({"name": interaction.user.display_name, "user_id": interaction.user.id, "client_id": client_id, "membership_id": membership_id, "membership_type": membership_type, "url": url})
-    print(result.acknowledged)
+        #save user in database
+        #need to save user id and characters ids
+        print(membership_type, membership_id, url)
+        result = collection.insert_one({"name": interaction.user.display_name, "user_id": interaction.user.id, "client_id": client_id, "membership_id": membership_id, "membership_type": membership_type, "url": url})
+        print(result.acknowledged)
 
-    await interaction.response.send_message("You have been registered.")
+        await interaction.response.send_message("You have been registered.")
 
 @bot.slash_command(name="good-boy-protocol")
 async def rank_good_boy_protocol(interaction):
