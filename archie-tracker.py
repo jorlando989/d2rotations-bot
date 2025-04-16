@@ -73,7 +73,7 @@ async def register2(interaction, url):
     #save user in database
     #need to save user id and characters ids
     print(membership_type, membership_id, url)
-    result = collection.insert_one({"name": interaction.user.display_name, "client_id": client_id, "membership_id": membership_id, "membership_type": membership_type, "url": url})
+    result = collection.insert_one({"name": interaction.user.display_name, "user_id": interaction.user.id, "client_id": client_id, "membership_id": membership_id, "membership_type": membership_type, "url": url})
     print(result.acknowledged)
 
     await interaction.response.send_message("You have been registered.")
@@ -81,7 +81,8 @@ async def register2(interaction, url):
 @bot.slash_command(name="good-boy-protocol")
 async def rank_good_boy_protocol(interaction):
     #get membership_id from database
-    results = collection.find_one({"client_id": client_id})
+    user_id = interaction.user.display_name
+    results = collection.find_one({"user_id": user_id})
     membership_id = results["membership_id"]
     get_profile_url = f"https://www.bungie.net/Platform/Destiny2/2/Profile/{membership_id}/?components=1100"
 
