@@ -99,6 +99,7 @@ async def rank_good_boy_protocol(interaction):
         color=discord.Color.blue()
     )
     embed.set_thumbnail(url="https://www.bungie.net/common/destiny2_content/icons/9f8e31dbce0ef4f4d3f58b32dfe9367c.jpg")
+    embed.set_author(name=interaction.user.name, icon_url=interaction.user.display_avatar)
     await interaction.send(embed=embed)
 
 @bot.slash_command(name="leaderboard")
