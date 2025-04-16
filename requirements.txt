@@ -1,7 +1,5 @@
 discord
 pymongo
-json
 requests_oauthlib
-os
 discord.ext
 dotenv
