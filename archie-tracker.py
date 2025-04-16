@@ -81,7 +81,7 @@ async def register2(interaction, url):
 @bot.slash_command(name="good-boy-protocol")
 async def rank_good_boy_protocol(interaction):
     #get membership_id from database
-    user_id = interaction.user.display_name
+    user_id = interaction.user.id
     results = collection.find_one({"user_id": user_id})
     membership_id = results["membership_id"]
     get_profile_url = f"https://www.bungie.net/Platform/Destiny2/2/Profile/{membership_id}/?components=1100"
