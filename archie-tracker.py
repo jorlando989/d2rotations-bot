@@ -52,7 +52,10 @@ async def on_ready():
               description="Register as part of the d2rotations bot")
 async def register(interaction):
     #check if already registered
-
+    results = collection.find_one({"user_id": interaction.user.id})
+    if (results != None):
+        await interaction.response.send_message("You are already registered.")
+        return
     #oauth
     auth_link = session.authorization_url(base_auth_url)
     await interaction.response.send_message(f"Auth link: {auth_link[0]} \n\n Please visit this site, copy the url, and then call register2 command with the url")
@@ -60,7 +63,10 @@ async def register(interaction):
 @bot.slash_command(name="register2")
 async def register2(interaction, url):
     #check if already registered
-
+    results = collection.find_one({"user_id": interaction.user.id})
+    if (results != None):
+        await interaction.response.send_message("You are already registered.")
+        return
     session.fetch_token(
         client_id=client_id,
         client_secret=client_secret,
@@ -78,7 +84,7 @@ async def register2(interaction, url):
     #save user in database
     #need to save user id and characters ids
     print(membership_type, membership_id, url)
-    result = collection.insert_one({"name": interaction.user.display_name, "user_id": str(interaction.user.id), "client_id": client_id, "membership_id": membership_id, "membership_type": membership_type, "url": url})
+    result = collection.insert_one({"name": interaction.user.display_name, "user_id": interaction.user.id, "client_id": client_id, "membership_id": membership_id, "membership_type": membership_type, "url": url})
     print(result.acknowledged)
 
     await interaction.response.send_message("You have been registered.")
