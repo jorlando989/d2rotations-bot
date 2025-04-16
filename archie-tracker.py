@@ -92,7 +92,8 @@ async def register2(interaction, url):
 @bot.slash_command(name="good-boy-protocol")
 async def rank_good_boy_protocol(interaction):
     good_boy_protocol_counter = get_good_boy_count(interaction.user.id)
-
+    if(interaction.user.id == 410595937321353216):
+        good_boy_protocol_counter = 1
     embed = discord.Embed(
         title="Good Boy Protocol", 
         description=f"You've pet Archie {good_boy_protocol_counter} times",
@@ -110,6 +111,8 @@ async def leaderboard(interaction, leaderboard_name):
         all_users_gb_counts = []
         for user in all_users:
             good_boy_count = get_good_boy_count(user["user_id"])
+            if(interaction.user.id == 410595937321353216):
+                good_boy_count = 1
             all_users_gb_counts.append((user["membership_id"], user["user_id"], good_boy_count, user["name"]))
 
         all_users_gb_counts.sort(key=lambda x:x[2], reverse=True)
