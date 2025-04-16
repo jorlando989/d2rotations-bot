@@ -39,7 +39,7 @@ intents.message_content = True
 
 additional_headers = {"X-API-KEY": os.getenv("API_KEY")}
 
-bot = discord.Bot(command_prefix=".", intents=intents)
+bot = commands.Bot(command_prefix=".", intents=intents)
 session = OAuth2Session(client_id=client_id, redirect_uri=redirect_url)
 
 @bot.event
