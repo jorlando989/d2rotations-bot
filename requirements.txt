@@ -1,4 +1,3 @@
-discord
 pycord
 pymongo
 requests_oauthlib
