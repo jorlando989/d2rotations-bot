@@ -7,11 +7,12 @@ from discord import option
 from discord.ext import commands
 import pymongo
 
-def get_good_boy_count(client_id, membership_id):
+def get_good_boy_count(user_id):
     #get membership_id from database
-    results = collection.find_one({"client_id": client_id})
+    results = collection.find_one({"user_id": user_id})
     membership_id = results["membership_id"]
-    get_profile_url = f"https://www.bungie.net/Platform/Destiny2/2/Profile/{membership_id}/?components=1100"
+    membership_type = results["membership_type"]
+    get_profile_url = f"https://www.bungie.net/Platform/Destiny2/{membership_type}/Profile/{membership_id}/?components=1100"
 
     get_profile_response = session.get(url=get_profile_url, headers=additional_headers)
     get_profile_json_response = json.loads(get_profile_response.text)
@@ -50,12 +51,16 @@ async def on_ready():
 @bot.slash_command(name="register",
               description="Register as part of the d2rotations bot")
 async def register(interaction):
+    #check if already registered
+
     #oauth
     auth_link = session.authorization_url(base_auth_url)
     await interaction.response.send_message(f"Auth link: {auth_link[0]} \n\n Please visit this site, copy the url, and then call register2 command with the url")
 
 @bot.slash_command(name="register2")
 async def register2(interaction, url):
+    #check if already registered
+
     session.fetch_token(
         client_id=client_id,
         client_secret=client_secret,
@@ -73,22 +78,14 @@ async def register2(interaction, url):
     #save user in database
     #need to save user id and characters ids
     print(membership_type, membership_id, url)
-    result = collection.insert_one({"name": interaction.user.display_name, "user_id": interaction.user.id, "client_id": client_id, "membership_id": membership_id, "membership_type": membership_type, "url": url})
+    result = collection.insert_one({"name": interaction.user.display_name, "user_id": str(interaction.user.id), "client_id": client_id, "membership_id": membership_id, "membership_type": membership_type, "url": url})
     print(result.acknowledged)
 
     await interaction.response.send_message("You have been registered.")
 
 @bot.slash_command(name="good-boy-protocol")
 async def rank_good_boy_protocol(interaction):
-    #get membership_id from database
-    user_id = interaction.user.id
-    results = collection.find_one({"user_id": user_id})
-    membership_id = results["membership_id"]
-    get_profile_url = f"https://www.bungie.net/Platform/Destiny2/2/Profile/{membership_id}/?components=1100"
-
-    get_profile_response = session.get(url=get_profile_url, headers=additional_headers)
-    get_profile_json_response = json.loads(get_profile_response.text)
-    good_boy_protocol_counter = get_profile_json_response["Response"]["metrics"]["data"]["metrics"]["3131994725"]["objectiveProgress"]["progress"]
+    good_boy_protocol_counter = get_good_boy_count(interaction.user.id)
 
     embed = discord.Embed(
         title="Good Boy Protocol", 
@@ -105,16 +102,13 @@ async def leaderboard(interaction, leaderboard_name):
         all_users = collection.find({})
         all_users_gb_counts = []
         for user in all_users:
-            good_boy_count = get_good_boy_count(user["client_id"], user["membership_id"])
-            all_users_gb_counts.append((user["membership_id"], user["client_id"], good_boy_count, user["name"]))
+            good_boy_count = get_good_boy_count(user["user_id"])
+            all_users_gb_counts.append((user["membership_id"], user["user_id"], good_boy_count, user["name"]))
 
         all_users_gb_counts.sort(key=lambda x:x[2])
-        
-        # topTen = all_users_gb_counts[0:10]
 
         desc = ""
         i = 1
-        # print(interaction.guild.members)
         for x in all_users_gb_counts:
             desc += f"{i}) {x[3]} - {x[2]} pets\n"
             i += 1
