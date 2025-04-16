@@ -105,7 +105,7 @@ async def leaderboard(interaction, leaderboard_name):
             good_boy_count = get_good_boy_count(user["user_id"])
             all_users_gb_counts.append((user["membership_id"], user["user_id"], good_boy_count, user["name"]))
 
-        all_users_gb_counts.sort(key=lambda x:x[2])
+        all_users_gb_counts.sort(key=lambda x:x[2], reverse=True)
 
         desc = ""
         i = 1
