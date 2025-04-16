@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 import json
 import discord
+from discord import option
 from discord.ext import commands
 import pymongo
 
@@ -97,6 +98,7 @@ async def rank_good_boy_protocol(interaction):
     await interaction.send(embed=embed)
 
 @bot.slash_command(name="leaderboard")
+@option("leaderboard_name", str, description="Select an option", choices=["Good Boy Protocol"])
 async def leaderboard(interaction, leaderboard_name):
     if (leaderboard_name == "Good Boy Protocol"):
         all_users = collection.find({})
