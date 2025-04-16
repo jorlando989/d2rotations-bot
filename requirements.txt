@@ -1,5 +1,5 @@
 discord
-pycord
+py-cord
 pymongo
 requests_oauthlib
 dotenv
