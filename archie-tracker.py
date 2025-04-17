@@ -110,6 +110,7 @@ async def rank_good_boy_protocol(interaction):
 @bot.slash_command(name="leaderboard")
 @option("leaderboard_name", str, description="Select an option", choices=["Good Boy Protocol"])
 async def leaderboard(interaction, leaderboard_name):
+    await interaction.defer()
     if (leaderboard_name == "Good Boy Protocol"):
         all_users = collection.find({})
         all_users_gb_counts = []
@@ -117,7 +118,10 @@ async def leaderboard(interaction, leaderboard_name):
             good_boy_count = get_good_boy_count(user["user_id"])
             if(interaction.user.id == 410595937321353216):
                 good_boy_count = 0
-            all_users_gb_counts.append((user["membership_id"], user["user_id"], good_boy_count, user["name"]))
+
+            #check if user in server
+            if (interaction.guild.get_member(user["user_id"])):
+                all_users_gb_counts.append((user["membership_id"], user["user_id"], good_boy_count, user["name"]))
 
         all_users_gb_counts.sort(key=lambda x:x[2], reverse=True)
 
@@ -132,6 +136,6 @@ async def leaderboard(interaction, leaderboard_name):
             color=discord.Color.blue(),
             description=desc
         )
-        await interaction.send(embed=embed)
+        await interaction.respond(embed=embed)
 
 bot.run(f"{discord_token}")
