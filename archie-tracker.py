@@ -50,7 +50,7 @@ async def on_ready():
     print(f"we have logged in as {bot.user}")
 
 @bot.slash_command(name="register",
-              description="Register as part of the d2rotations bot")
+              description="Step 1 for registering with the bot")
 async def register(interaction):
     #check if already registered
     results = collection.find_one({"user_id": interaction.user.id})
@@ -61,7 +61,7 @@ async def register(interaction):
         auth_link = session.authorization_url(base_auth_url)
         await interaction.response.send_message(f"Auth link: {auth_link[0]} \n\n Please visit this site, copy the url, and then call register2 command with the url")
 
-@bot.slash_command(name="register2")
+@bot.slash_command(name="register2", description="Step 2 for registering with the bot")
 async def register2(interaction, url):
     #check if already registered
     results = collection.find_one({"user_id": interaction.user.id})
@@ -90,7 +90,7 @@ async def register2(interaction, url):
 
         await interaction.response.send_message("You have been registered.")
 
-@bot.slash_command(name="good-boy-protocol")
+@bot.slash_command(name="good-boy-protocol", description="Shows the number of times you've activated Good Boy Protocol")
 async def rank_good_boy_protocol(interaction):
     response_options = ["You've pet Archie 1 times", "Resetting Good Boy Protocol...You've pet Archie 0 times", "Get Good"]
     good_boy_protocol_counter = get_good_boy_count(interaction.user.id)
@@ -107,7 +107,7 @@ async def rank_good_boy_protocol(interaction):
     embed.set_author(name=interaction.user.display_name, icon_url=interaction.user.display_avatar)
     await interaction.send(embed=embed)
 
-@bot.slash_command(name="leaderboard")
+@bot.slash_command(name="leaderboard", description="View stats for everyone in your server")
 @option("leaderboard_name", str, description="Select an option", choices=["Good Boy Protocol"])
 async def leaderboard(interaction, leaderboard_name):
     await interaction.defer()
