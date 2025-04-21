@@ -116,7 +116,7 @@ async def leaderboard(interaction, leaderboard_name):
         all_users_gb_counts = []
         for user in all_users:
             good_boy_count = get_good_boy_count(user["user_id"])
-            if(interaction.user.id == 410595937321353216):
+            if(user["user_id"] == 410595937321353216):
                 good_boy_count = 0
 
             #check if user in server
